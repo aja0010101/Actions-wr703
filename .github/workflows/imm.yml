@@ -64,7 +64,7 @@ jobs:
     - name: Add 703n-dts
       run: |
         cd openwrt/target/linux/ar71xx/image
-        sed -i '/tl-wr703n-v1/,/0x07030101/s/tplink-8mlzma/tplink-16mlzma/g' tiny-tp-link.mk
+        sed -i '/tl-wr703n-v1/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
 
     - name: Load custom feeds
       run: |
