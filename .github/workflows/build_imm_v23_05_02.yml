@@ -69,6 +69,16 @@ jobs:
         cd openwrt/target/linux/ath79/dts
         sed -i 's/0x3d0000/0xfd0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
         sed -i 's/0x3f0000/0xff0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+        sed -i '/usb: usb@1b000000 {/,/};/{
+        /compatible = "chipidea,usb2"/c\
+                compatible = "generic-ehci";
+        /reset-names = "usb-host"/a\\
+        \\
+                has-transaction-translator;\
+                caps-offset = <0x100>;\
+        \\
+        /status = "disabled"/i\\
+        }' ar9330.dtsi
         cd ../image
         sed -i '/tplink_tl-wr703n/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
 
