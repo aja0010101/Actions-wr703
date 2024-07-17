@@ -67,12 +67,10 @@ jobs:
     - name: Add 703n-dts
       run: |
         cd openwrt/target/linux/ath79/dts
+        rm -f ar9330.dtsi
+        wget https://github.com/aja0010101/ahelloworld/blob/master/ar9330.dtsi
         sed -i 's/0x3d0000/0xfd0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
         sed -i 's/0x3f0000/0xff0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
-        sed -i '/usb: usb@1b000000 {/,/"usb-phy";/ s/chipidea,usb2/generic-ehci/g' ar9330.dtsi
-        sed -i '/usb@1b000000 {/,/usb-phy;/ {/reset-names = "usb-host";/a \    has-transaction-translator;}' ar9330.dtsi
-        sed -i '/usb@1b000000 {/,/"usb-phy";/ {/has-transaction-translator;/a \    caps-offset = <0x100>;}' ar9330.dtsi
-        sed -i '/usb: usb@1b000000 {/,/"usb-phy";/ {/has-transaction-translator;/i \    ' ar9330.dtsi
         cd ../image
         sed -i '/tplink_tl-wr703n/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
 
