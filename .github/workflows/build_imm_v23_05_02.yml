@@ -47,7 +47,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+        sudo -E apt-get -qq install $(curl -fsSL https://build-scripts.immortalwrt.org/init_build_environment.sh)
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -67,36 +67,21 @@ jobs:
     - name: Add 703n-dts
       run: |
         cd openwrt/target/linux/ath79/dts
-        if [ -f "ar9331_tplink_tl-wr703n_tl-mr10u.dtsi" ]; then
-          sed -i 's/0x3d0000/0xfd0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
-          sed -i 's/0x3f0000/0xff0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
-        else
-          echo "File ar9331_tplink_tl-wr703n_tl-mr10u.dtsi not found"
-          exit 1
-        fi
-
-        if [ -f "ar9330.dtsi" ]; then
-          sed -i '/usb: usb@1b000000 {/,/};/{
-          /compatible = "chipidea,usb2"/c\
-                  compatible = "generic-ehci";
-          /reset-names = "usb-host"/a\
-                  has-transaction-translator;\
-                  caps-offset = <0x100>;\
-          /status = "disabled"/i\
-          }' ar9330.dtsi
-        else
-          echo "File ar9330.dtsi not found"
-          exit 1
-        fi
-        
+        sed -i 's/0x3d0000/0xfd0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+        sed -i 's/0x3f0000/0xff0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+        sed -i '/usb: usb@1b000000 {/,/};/{
+        /compatible = "chipidea,usb2"/c\
+                compatible = "generic-ehci";
+        /reset-names = "usb-host"/a\\
+        \\
+                has-transaction-translator;\
+                caps-offset = <0x100>;\
+        \\
+        /status = "disabled"/i\\
+        }' ar9330.dtsi
         cd ../image
-        if [ -f "tiny-tp-link.mk" ]; then
-          sed -i '/tplink_tl-wr703n/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
-        else
-          echo "File tiny-tp-link.mk not found"
-          exit 1
-        fi
-        
+        sed -i '/tplink_tl-wr703n/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
+
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
