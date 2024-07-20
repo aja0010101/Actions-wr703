@@ -70,6 +70,8 @@ jobs:
         sed -i 's/0x3d0000/0xfd0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
         sed -i 's/0x3f0000/0xff0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
         cd ../image
+        rm -f tiny-tp-link.mk
+        wget https://github.com/aja0010101/ahelloworld/raw/master/tiny-tp-link.mk
         sed -i '/tplink_tl-wr703n/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
 
     - name: Load custom feeds
