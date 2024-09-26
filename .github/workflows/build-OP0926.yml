@@ -25,7 +25,7 @@ env:
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: true
+  UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
 
 jobs:
@@ -57,6 +57,16 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
+    - name: Add 703n-dts
+      run: |
+        cd openwrt/target/linux/ath79/dts
+        rm -f ar9330.dtsi
+        wget https://github.com/aja0010101/ahelloworld/raw/master/ar9330.dtsi
+        sed -i 's/0x3d0000/0xfd0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+        sed -i 's/0x3f0000/0xff0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+        cd ../image
+        sed -i '/tplink_tl-wr703n/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
+
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
@@ -65,7 +75,10 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
+      run: |
+        cd openwrt && ./scripts/feeds update -a
+        rm -rf feeds/packages/lang/golang
+        git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
