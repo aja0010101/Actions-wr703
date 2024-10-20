@@ -56,6 +56,8 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        cd openwrt
+        git checkout 735ea0d11ed91fc310730b8c76430f22b6cc5371
 
     - name: Add 703n-dts
       run: |
