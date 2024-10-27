@@ -59,13 +59,10 @@ jobs:
 
     - name: Add mt300-32M-dts
       run: |
-        cd openwrt/target/linux/ath79/dts
-        rm -f ar9330.dtsi
-        wget https://github.com/aja0010101/ahelloworld/raw/master/ar9330.dtsi
-        sed -i 's/0x3d0000/0xfd0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
-        sed -i 's/0x3f0000/0xff0000/' ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+        cd openwrt/target/linux/ramips/dts
+        sed -i 's/0xfb0000/0x1fb0000/' mt7628an_glinet_gl-mt300n-v2.dts
         cd ../image
-        sed -i '/tplink_tl-wr703n/,/0x07030101/s/tplink-4mlzma/tplink-16mlzma/g' tiny-tp-link.mk
+        sed -i '/glinet_gl-mt300n-v2/,/GL-MT300N/s/16064k/32448k/g' mt76x8.mk
 
     - name: Load custom feeds
       run: |
