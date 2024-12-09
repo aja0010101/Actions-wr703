@@ -23,6 +23,5 @@ git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/l
 ./scripts/feeds install -a
 set -x
 
-cd package
 # sed -i "s/LEDE /We build $(TZ=UTC-8 date "+%Y.%m.%d") @ LEDE /g" lean/default-settings/files/zzz-default-settings
 sed -i 's/192.168.1.1/192.168.123.1/g' package/base-files/files/bin/config_generate
