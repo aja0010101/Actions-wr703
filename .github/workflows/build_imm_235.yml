@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build imm_op_v23_05
+name: Build imm_v235
 
 on:
   repository_dispatch:
