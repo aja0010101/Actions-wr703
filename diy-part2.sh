@@ -15,7 +15,7 @@
 # sed -i 's/192.168.1.1/192.168.9.1/g' package/base-files/files/bin/config_generate
 
 rm -rf feeds/luci/themes/luci-theme-argon
-
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 
