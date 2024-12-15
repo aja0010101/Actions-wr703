@@ -36,6 +36,9 @@ function git_sparse_clone() {
 # git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser luci-app-ssr-mudb-server
 # git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
 # git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
+# DDNS.to
+#git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
+#git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
 
 rm -rf package/lean/luci-theme-argon 
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  package/lean/luci-theme-argon
