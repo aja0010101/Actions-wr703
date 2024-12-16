@@ -40,24 +40,27 @@ function git_sparse_clone() {
 #git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
 #git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
 
-rm -rf package/lean/luci-theme-argon 
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  package/lean/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
+# curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
+git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 
+sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+git clone https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
 cd package
 mkdir kwrt-packages
 git init kwrt-packages
 cd kwrt-packages
 git remote add -f origin https://github.com/kiddin9/kwrt-packages
 git config core.sparseCheckout true
-echo "dufs/" >> .git/info/sparse-checkout
-echo "luci-app-dufs/" >> .git/info/sparse-checkout
-echo "tailscale/" >> .git/info/sparse-checkout
-echo "luci-app-tailscale/" >> .git/info/sparse-checkout
+# echo "dufs/" >> .git/info/sparse-checkout
+# echo "luci-app-dufs/" >> .git/info/sparse-checkout
+# echo "tailscale/" >> .git/info/sparse-checkout
+# echo "luci-app-tailscale/" >> .git/info/sparse-checkout
 echo "luci-app-chatgpt-web/" >> .git/info/sparse-checkout
 git pull origin main
 cd ..
 cd ..
-
 ./scripts/feeds update -i
 ./scripts/feeds install -a
 set -x
