@@ -64,6 +64,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
         git tag
+        git fetch
         git checkout v23.05.3
 
     - name: 缓存构建动作
