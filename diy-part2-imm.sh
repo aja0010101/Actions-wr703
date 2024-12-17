@@ -77,3 +77,5 @@ sed -i 's/192.168.1.1/192.168.123.1/g' $(find feeds/luci/modules/luci-mod-system
 # 固件版本名称自定义
 sed -i "s/DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION='ImmortalWrt By We $(date +"%Y%m%d") '/g" package/base-files/files/etc/openwrt_release
 sed -i 's/192.168.1.1/192.168.123.1/g' package/base-files/files/bin/config_generate
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
