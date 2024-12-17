@@ -60,7 +60,7 @@ jobs:
         cd openwrt
         git branch -a
         git tag
-        git checkout v23.05.3
+        git checkout v23.05.4
 
     - name: Load custom feeds
       run: |
