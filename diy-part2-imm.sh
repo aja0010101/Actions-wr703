@@ -47,23 +47,24 @@ git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/l
 
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 git clone https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
-cd package
-mkdir kwrt-packages
-git init kwrt-packages
-cd kwrt-packages
-git remote add -f origin https://github.com/kiddin9/kwrt-packages
-git config core.sparseCheckout true
+# cd package
+# mkdir kwrt-packages
+# git init kwrt-packages
+# cd kwrt-packages
+# git remote add -f origin https://github.com/kiddin9/kwrt-packages
+# git config core.sparseCheckout true
+
 # echo "dufs/" >> .git/info/sparse-checkout
 # echo "luci-app-dufs/" >> .git/info/sparse-checkout
 # echo "tailscale/" >> .git/info/sparse-checkout
 # echo "luci-app-tailscale/" >> .git/info/sparse-checkout
-echo "luci-app-chatgpt-web/" >> .git/info/sparse-checkout
-git pull origin main
-cd ..
-cd ..
-./scripts/feeds update -i
-./scripts/feeds install -a
-set -x
+# echo "luci-app-chatgpt-web/" >> .git/info/sparse-checkout
+# git pull origin main
+# cd ..
+# cd ..
+# ./scripts/feeds update -i
+# ./scripts/feeds install -a
+# set -x
 
 # cd package
 # sed -i "s/LEDE /We build $(TZ=UTC-8 date "+%Y.%m.%d") @ LEDE /g" lean/default-settings/files/zzz-default-settings
