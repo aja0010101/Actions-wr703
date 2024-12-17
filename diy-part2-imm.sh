@@ -71,4 +71,8 @@ set -x
 # sed -i "/firewall\.user/d" lean/default-settings/files/zzz-default-settings
 # sed -i "s/192.168.1.1/192.168.123.1/g" base-files/luci2/bin/config_generate
 # sed -i "/openwrt_luci/d" lean/default-settings/files/zzz-default-settings
+#修改immortalwrt.lan关联IP
+sed -i 's/192.168.1.1/192.168.123.1/g' $(find feeds/luci/modules/luci-mod-system -type f -name "flash.js")
+# 固件版本名称自定义
+sed -i "s/DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION='ImmortalWrt By We $(date +"%Y%m%d") '/g" package/base-files/files/etc/openwrt_release
 sed -i 's/192.168.1.1/192.168.123.1/g' package/base-files/files/bin/config_generate
