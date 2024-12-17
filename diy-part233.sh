@@ -43,24 +43,24 @@ function git_sparse_clone() {
 rm -rf package/lean/luci-theme-argon 
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  package/lean/luci-theme-argon
 
-cd package
-mkdir kwrt-packages
-git init kwrt-packages
-cd kwrt-packages
-git remote add -f origin https://github.com/kiddin9/kwrt-packages
-git config core.sparseCheckout true
-echo "dufs/" >> .git/info/sparse-checkout
-echo "luci-app-dufs/" >> .git/info/sparse-checkout
-echo "tailscale/" >> .git/info/sparse-checkout
-echo "luci-app-tailscale/" >> .git/info/sparse-checkout
-echo "luci-app-chatgpt-web/" >> .git/info/sparse-checkout
-git pull origin main
-cd ..
-cd ..
+# cd package
+# mkdir kwrt-packages
+# git init kwrt-packages
+# cd kwrt-packages
+# git remote add -f origin https://github.com/kiddin9/kwrt-packages
+# git config core.sparseCheckout true
+# echo "dufs/" >> .git/info/sparse-checkout
+# echo "luci-app-dufs/" >> .git/info/sparse-checkout
+# echo "tailscale/" >> .git/info/sparse-checkout
+# echo "luci-app-tailscale/" >> .git/info/sparse-checkout
+# echo "luci-app-chatgpt-web/" >> .git/info/sparse-checkout
+# git pull origin main
+# cd ..
+# cd ..
 
-./scripts/feeds update -i
-./scripts/feeds install -a
-set -x
+# ./scripts/feeds update -i
+# ./scripts/feeds install -a
+# set -x
 
 # cd package
 # sed -i "s/LEDE /We build $(TZ=UTC-8 date "+%Y.%m.%d") @ LEDE /g" lean/default-settings/files/zzz-default-settings
