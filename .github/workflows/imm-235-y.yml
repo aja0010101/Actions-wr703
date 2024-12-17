@@ -20,7 +20,7 @@ env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: tm233y3.config
+  CONFIG_FILE: tm233y6.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2-imm.sh
   UPLOAD_BIN_DIR: false
@@ -88,9 +88,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        sed -i 's/--set=llvm.download-ci-llvm=true/--set=source.crates-io.replace-with=mirror \\\
-        --set=source.mirror.registry=sparse+https:\/\/mirrors.bfsu.edu.cn\/crates.io-index\/ \\\
-        --set=llvm.download-ci-llvm=false/' package/feeds/packages/rust/Makefile
 
     - name: Download package
       id: package
