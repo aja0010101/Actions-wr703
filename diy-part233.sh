@@ -41,7 +41,7 @@ function git_sparse_clone() {
 #git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
 
 rm -rf feeds/kenzo/luci-app-filebrowser
-git clone https://github.com/OldCoding/luci-app-filebrowser feeds/kenzo/luci-app-filebrowser
+git clone https://github.com/OldCoding/luci-app-filebrowser package/luci-app-filebrowser
 rm -rf package/lean/luci-theme-argon 
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  package/lean/luci-theme-argon
 
