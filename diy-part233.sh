@@ -175,6 +175,7 @@ clone_all() {
 
 rm -rf feeds/kenzo/luci-app-filebrowser
 rm -rf package/luci-app-filebrowser
+rm -rf feeds/kenzo/filebrowser
 # git_sparse_clone master https://github.com/haiibo/openwrt-packages luci-app-filebrowser
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser
 rm -rf package/lean/luci-theme-argon 
