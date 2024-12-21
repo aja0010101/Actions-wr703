@@ -173,11 +173,11 @@ clone_all() {
 #git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
 #git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
 
-rm -rf feeds/kenzo/luci-app-filebrowser
-rm -rf package/luci-app-filebrowser
-rm -rf feeds/kenzo/filebrowser
+# rm -rf feeds/kenzo/luci-app-filebrowser
+# rm -rf package/luci-app-filebrowser
+# rm -rf feeds/kenzo/filebrowser
 # git_sparse_clone master https://github.com/haiibo/openwrt-packages luci-app-filebrowser
-git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser
+# git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser
 rm -rf package/lean/luci-theme-argon 
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  package/lean/luci-theme-argon
 
