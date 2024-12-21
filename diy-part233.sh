@@ -177,7 +177,7 @@ rm -rf feeds/kenzo/luci-app-filebrowser
 rm -rf package/luci-app-filebrowser
 rm -rf feeds/kenzo/filebrowser
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages filebrowser
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-filebrowser
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-filebrowser-go
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages dufs
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-dufs
 git_sparse_clone master https://github.com/haiibo/openwrt-packages gowebdav
