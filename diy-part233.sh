@@ -164,8 +164,11 @@ clone_all() {
     rm -rf $temp_dir
 }
 
-# clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
+# 创建插件保存目录
+destination_dir="package/openwrt-packages"
+[ -d $destination_dir ] || mkdir -p $destination_dir
 
+# clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhome
 # git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser luci-app-ssr-mudb-server
 # git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
 # git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
@@ -180,9 +183,10 @@ rm -rf feeds/kenzo/filebrowser
 # git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-filebrowser-go
 git_sparse_clone main https://github.com/kenzok8/jell dufs
 git_sparse_clone main https://github.com/kenzok8/jell luci-app-dufs
-git_sparse_clone master https://github.com/haiibo/openwrt-packages gowebdav
-git_sparse_clone master https://github.com/haiibo/openwrt-packages luci-app-gowebdav
-
+# git_sparse_clone master https://github.com/haiibo/openwrt-packages gowebdav
+# git_sparse_clone master https://github.com/haiibo/openwrt-packages luci-app-gowebdav
+clone_dir https://github.com/haiibo/openwrt-packages gowebdav
+clone_dir https://github.com/haiibo/openwrt-packages luci-app-gowebdav
 # git_sparse_clone master https://github.com/kiddin9/kwrt-packages luci-app-dufs
 # git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser
 rm -rf package/lean/luci-theme-argon
