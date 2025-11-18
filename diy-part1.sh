@@ -28,5 +28,5 @@
 # wget https://github.com/aja0010101/ahelloworld/raw/refs/heads/master/feeds.conf.default -O feeds.conf.default
 # wget https://somewhere.com/tp703/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi -O target/linux/ath79/dts/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
 
-sed -i 'src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 # sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
