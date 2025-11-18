@@ -10,17 +10,17 @@
 # See /LICENSE for more information.
 #
 
-name: OpenWrt Builder-r3g-MuTong233
+name: OpenWrt Builder-r3g-lede-MuTong233
 
 on:
   repository_dispatch:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/MuTong233/lede
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: tm233y33.config
+  CONFIG_FILE: r3glede.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part233.sh
   UPLOAD_BIN_DIR: false
@@ -74,7 +74,12 @@ jobs:
         git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
     - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
+      run: |
+        cd openwrt && ./scripts/feeds install -a
+        rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
+        git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
+        rm -rf feeds/luci/applications/luci-app-passwall
+        git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 
     - name: Load custom configuration
       run: |
